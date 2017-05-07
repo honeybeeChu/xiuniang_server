@@ -194,7 +194,8 @@ public class DBHelper {
       
     private boolean GetConn()  
     {  
-        return GetConn("chuliang","chuliang");  
+//        return GetConn("chuliang","chuliang");  
+        return GetConn("sa","ruifuxiang");  
     }  
       
     //关闭连接  
