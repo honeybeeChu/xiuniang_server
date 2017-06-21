@@ -3,7 +3,7 @@ package com.xiuniang.xiuniang_server.po;
 import java.util.Date;
 
 /**
- * @author wj
+ * @author chuliang
  *
  */
 public class DianyuanInfo {

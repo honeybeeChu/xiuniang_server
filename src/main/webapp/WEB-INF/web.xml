@@ -18,14 +18,23 @@
 	
 	
 	<servlet>
+		<servlet-name>VipOrderInfoServlet</servlet-name>
+		<servlet-class>com.xiuniang.xiuniang_server.servlet.VipOrderInfoServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
 		<servlet-name>DianyuanInfoServlet</servlet-name>
 		<servlet-class>com.xiuniang.xiuniang_server.servlet.DianyuanInfoServlet</servlet-class>
 	</servlet>
 	
-	
 	<servlet-mapping>
 		<servlet-name>DianyuanInfoServlet</servlet-name>
 		<url-pattern>/servlet/DianyuanInfoServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>VipOrderInfoServlet</servlet-name>
+		<url-pattern>/servlet/getviporderbytime</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>

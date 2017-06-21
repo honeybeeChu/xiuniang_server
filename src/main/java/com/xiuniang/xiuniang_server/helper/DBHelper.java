@@ -165,7 +165,7 @@ public class DBHelper {
     //取得连接  
     private boolean GetConn(String sUser, String sPwd) {  
         if(_CONN!=null)return true;  
-        try {             
+        try {          
             String sDriverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";  
             String sDBUrl = "jdbc:sqlserver://192.168.1.189;DatabaseName=bserp_rfx";
 //            String sDBUrl = "jdbc:sqlserver://58.210.143.138:8044;DatabaseName=bserp_rfx";

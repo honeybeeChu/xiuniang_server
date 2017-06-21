@@ -18,25 +18,26 @@ import org.json.JSONObject;
 import com.xiuniang.xiuniang_server.helper.DBHelper;
 
 
-public class DianyuanInfoServlet extends HttpServlet {
+public class VipOrderInfoServlet extends HttpServlet {
 
 //	private DianyuanInfoServlet wxNetAuthOperateBO;
-	 Logger logger = Logger.getLogger(DianyuanInfoServlet.class);
+	 Logger logger = Logger.getLogger(VipOrderInfoServlet.class);
      
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			String start_time = request.getParameter("start_time");
+			String sqlStr = getOrderByLastTimeStr(start_time);
 			logger.debug("doGet 开始");
 			DBHelper help = new DBHelper();
-			ResultSet result = help.GetResultSet("select * from dianyuan where OUT =0 or OUT is null;", null);
+			ResultSet result = help.GetResultSet(sqlStr, null);
 			String reString = null;
 			if(result != null){
 				reString = resultSetToJson(result);
-				logger.info("the number of dianyuan is "+result.getRow());
+				logger.info("the number of vip orders is "+result.getRow());
 			}else{
-				reString = "get dianyuan data error.";
-				
+				reString = "get vip orders data error.";
 			}
 			
 			// 将请求、响应的编码均设置为UTF-8（防止中文乱码）
@@ -55,8 +56,21 @@ public class DianyuanInfoServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
 	}
+	
+	private String getOrderByLastTimeStr(String last_time){
+		StringBuffer sqlstr = new StringBuffer();
+		sqlstr.append("select a.vVIPcard as vip_card,a.dtDate as trade_date,c.GKMC as gkmc,c.sex as sex, a.fGetMoney as get_money, c.SJ as telephone,a.vShop as vshop,a.vEmpCode as vempcode,a.vSPCode as vspcode")
+		.append(" from sg_gathering a,V_VIPSET b , V_CUSTOMER c ")
+		.append(" where a.vVIPcard = b.DM and b.GKDM = c.DM and a.dtDate>'")
+		.append(last_time)
+		.append("' and a.vVIPcard!='null' and c.SJ != 'null';");
+		return sqlstr.toString();
+	}
+	
+//	public static void main(String args[]){
+//		System.out.println(getOrderByLastTimeStr("2017-06-20 16:34:31.000"));
+//	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -92,7 +106,6 @@ public class DianyuanInfoServlet extends HttpServlet {
 	            	jsonObj.put(columnName, "null");
 	            else
 	            	jsonObj.put(columnName, value);
-	            
 	        }   
 	        array.put(jsonObj);   
 	    }  
