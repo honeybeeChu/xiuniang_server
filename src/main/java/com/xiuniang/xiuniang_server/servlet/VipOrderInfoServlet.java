@@ -23,7 +23,6 @@ public class VipOrderInfoServlet extends HttpServlet {
 //	private DianyuanInfoServlet wxNetAuthOperateBO;
 	 Logger logger = Logger.getLogger(VipOrderInfoServlet.class);
      
-	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
@@ -52,15 +51,13 @@ public class VipOrderInfoServlet extends HttpServlet {
 			response.getWriter().print(reString);
 			logger.debug("doGet结束");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
-		
 	}
 	
 	private String getOrderByLastTimeStr(String last_time){
 		StringBuffer sqlstr = new StringBuffer();
-		sqlstr.append("select a.vVIPcard as vip_card,a.dtDate as trade_date,c.GKMC as gkmc,c.sex as sex, a.fGetMoney as get_money, c.SJ as telephone,a.vShop as vshop,a.vEmpCode as vempcode,a.vSPCode as vspcode")
+		sqlstr.append("select a.vVIPcard as vipCard,a.vMBillID as vmbillid, a.dtDate as tradeDate,c.GKMC as gkmc,c.sex as sex, a.fGetMoney as getMoney, c.SJ as telephone,a.vShop as vshop,a.vEmpCode as vempcode,a.vSPCode as vspcode")
 		.append(" from sg_gathering a,V_VIPSET b , V_CUSTOMER c ")
 		.append(" where a.vVIPcard = b.DM and b.GKDM = c.DM and a.dtDate>'")
 		.append(last_time)

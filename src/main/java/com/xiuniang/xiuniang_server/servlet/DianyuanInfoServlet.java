@@ -29,7 +29,10 @@ public class DianyuanInfoServlet extends HttpServlet {
 		try {
 			logger.debug("doGet 开始");
 			DBHelper help = new DBHelper();
-			ResultSet result = help.GetResultSet("select * from dianyuan where OUT =0 or OUT is null;", null);
+			
+			//OUT =0 or OUT is null表示在职   out=1表示离职
+//			ResultSet result = help.GetResultSet("select * from dianyuan where OUT =0 or OUT is null;", null);
+			ResultSet result = help.GetResultSet("select * from dianyuan;", null);
 			String reString = null;
 			if(result != null){
 				reString = resultSetToJson(result);
@@ -54,8 +57,6 @@ public class DianyuanInfoServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
