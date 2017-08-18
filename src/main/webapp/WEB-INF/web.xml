@@ -27,6 +27,11 @@
 		<servlet-class>com.xiuniang.xiuniang_server.servlet.DianyuanInfoServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>SyncVipInfoServlet</servlet-name>
+		<servlet-class>com.xiuniang.xiuniang_server.servlet.SyncVipInfo2EfastServlet</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>DianyuanInfoServlet</servlet-name>
 		<url-pattern>/servlet/DianyuanInfoServlet</url-pattern>
@@ -35,6 +40,11 @@
 	<servlet-mapping>
 		<servlet-name>VipOrderInfoServlet</servlet-name>
 		<url-pattern>/servlet/getviporderbytime</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>SyncVipInfoServlet</servlet-name>
+		<url-pattern>/servlet/syncVipInfo</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>
